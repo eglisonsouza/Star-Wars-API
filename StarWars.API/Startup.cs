@@ -44,9 +44,7 @@ namespace StarWars.API
             #region Services
             services.AddTransient<IPlanetService, PlanetService>();
             services.AddTransient<IHttpRequest, HttpRequest>();
-
-            
-
+            services.AddTransient<IStarshipService, StarshipService>();
             #endregion
             
             services.AddControllers();

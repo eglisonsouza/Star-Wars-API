@@ -27,5 +27,17 @@ namespace StarWars.API.Shared.Utils
                 return 0;
             }
         }
+        
+        public static int ToInt(this String value)
+        {
+            try
+            {
+                return Convert.ToInt32(value);
+            }
+            catch
+            {
+                return 0;
+            }
+        }
     }
 }
