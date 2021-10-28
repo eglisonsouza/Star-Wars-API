@@ -11,11 +11,11 @@ namespace StarWars.API.Infra.Repositories
 {
     public class PlanetRepository : BaseRepository, IPlanetRepository
     {
-        private readonly IPlanetService _planetService;
+        private readonly IPlanetSynchronize _planetSynchronize;
 
-        public PlanetRepository(ContextDb contextDb, IPlanetService planetService) : base(contextDb)
+        public PlanetRepository(ContextDb contextDb, IPlanetSynchronize planetSynchronize) : base(contextDb)
         {
-            _planetService = planetService;
+            _planetSynchronize = planetSynchronize;
         }
 
         public IEnumerable<Planet> GetAll()
@@ -27,7 +27,7 @@ namespace StarWars.API.Infra.Repositories
         {
             try
             {
-                (await _planetService.Synchronize()).ForEach(planet =>
+                (await _planetSynchronize.Synchronize()).ForEach(planet =>
                 {
                     this.Insert(new Planet()
                     {

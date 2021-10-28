@@ -4,8 +4,8 @@ using StarWars.API.Domain.ViewModels;
 
 namespace StarWars.API.Domain.Services
 {
-    public interface IStarshipService
+    public interface IPlanetSynchronize
     {
-        Task<List<StarshipViewModel>> Synchronize();
+        Task<List<PlanetViewModel>> Synchronize();
     }
 }

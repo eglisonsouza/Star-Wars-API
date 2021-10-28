@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using StarWars.API.Domain.ViewModels;
 using StarWars.API.Shared.Domain.Services;
 
-namespace StarWars.API.Shared.Utils
+namespace StarWars.API.Infra.Services.Synchronize
 {
     public class SynchronizeBase
     {

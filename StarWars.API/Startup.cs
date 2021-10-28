@@ -1,22 +1,13 @@
-using System;
-using System.Collections.Generic;
-using System.Data.Common;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using StarWars.API.Domain.Repositories;
 using StarWars.API.Domain.Services;
 using StarWars.API.Infra.DataAccess;
 using StarWars.API.Infra.Repositories;
-using StarWars.API.Infra.Services;
+using StarWars.API.Infra.Services.Synchronize;
 using StarWars.API.Shared.Domain.Services;
 using StarWars.API.Shared.Infra.Services;
 
@@ -42,9 +33,9 @@ namespace StarWars.API
             #endregion
 
             #region Services
-            services.AddTransient<IPlanetService, PlanetService>();
+            services.AddTransient<IPlanetSynchronize, PlanetSynchronize>();
             services.AddTransient<IHttpRequest, HttpRequest>();
-            services.AddTransient<IStarshipService, StarshipService>();
+            services.AddTransient<IStarshipSynchronize, StarshipSynchronize>();
             #endregion
             
             services.AddControllers();

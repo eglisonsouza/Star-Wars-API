@@ -12,11 +12,11 @@ namespace StarWars.API.Infra.Repositories
 {
     public class StarshipRepository : BaseRepository, IStarshipRepository
     {
-        private readonly IStarshipService _starshipService;
+        private readonly IStarshipSynchronize _starshipSynchronize;
 
-        public StarshipRepository(ContextDb contextDb, IStarshipService starshipService) : base(contextDb)
+        public StarshipRepository(ContextDb contextDb, IStarshipSynchronize starshipSynchronize) : base(contextDb)
         {
-            _starshipService = starshipService;
+            _starshipSynchronize = starshipSynchronize;
         }
 
         public IEnumerable<Starship> GetAll()
@@ -28,7 +28,7 @@ namespace StarWars.API.Infra.Repositories
         {
             try
             {
-                (await _starshipService.Synchronize()).ForEach(starship =>
+                (await _starshipSynchronize.Synchronize()).ForEach(starship =>
                 {
                     this.Insert(new Starship()
                     {
