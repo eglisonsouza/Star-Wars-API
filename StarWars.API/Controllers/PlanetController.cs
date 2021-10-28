@@ -1,4 +1,6 @@
+using System;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using StarWars.API.Domain.Repositories;
 
@@ -23,5 +25,19 @@ namespace StarWars.API.Controllers
             return Ok(_planetRepository.GetAll());
         }
 
+        [HttpGet]
+        [Route(template: "synchronize")]
+        public async Task<IActionResult> Synchronize()
+        {
+            try
+            {
+                await _planetRepository.Synchronize();
+                return NoContent();
+            }
+            catch (Exception e)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, e.Message);
+            }
+        }
     }
 }

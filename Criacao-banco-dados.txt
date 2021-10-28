@@ -7,16 +7,51 @@ CREATE TABLE Planets
 	Diameter FLOAT NOT NULL,
 	Climate VARCHAR(50) NOT NULL,
 	Population INT NOT NULL
-)
+);
 
-GO
+
 
 CREATE TABLE Starships
 (
 	Id INT NOT NULL PRIMARY KEY,
-	Name VARCHAR(80) NOT NULL,
-	Model VARCHAR(80) NOT NULL,
+	Name VARCHAR(100) NOT NULL,
+	Model VARCHAR(150) NOT NULL,
 	Passenger INT NOT NULL,
 	Charge FLOAT NOT NULL,
-	Class VARCHAR(80) NOT NULL
-)
+	Class VARCHAR(100) NOT NULL
+);
+
+
+
+CREATE TABLE Pilots
+(
+	Id INT NOT NULL PRIMARY KEY,
+	Name VARCHAR(200) NOT NULL,
+	BirthYear VARCHAR(10) NOT NULL,
+	IdPlanet INT NOT NULL,
+	FOREIGN KEY(IdPlanet) REFERENCES Planets(Id)
+);
+
+
+
+CREATE TABLE StarshipsPilots
+(
+	IdPilot INT NOT NULL,
+	IdStarship INT NOT NULL,
+	FlagAuthorized BIT DEFAULT(1) NOT NULL,
+	CONSTRAINT PK_StarshipsPilots PRIMARY KEY(IdPilot, IdStarship),
+	CONSTRAINT FK_StarshipsPilots_Pilots FOREIGN KEY(IdPilot) REFERENCES Pilots(Id),
+	CONSTRAINT FK_StarshipsPilots_Starships FOREIGN KEY(IdStarship) REFERENCES Starships(Id)
+);
+
+
+
+CREATE TABLE HistoryTrips
+(
+	IdPilot INT NOT NULL,
+	IdStarship INT NOT NULL,
+	DateExit DATETIME NOT NULL,
+	DateArrival DATETIME NULL,
+	CONSTRAINT PK_StarshipsPilots PRIMARY KEY(IdPilot, IdStarship),
+	CONSTRAINT FK_HistoryTrips_StarshipsPilots FOREIGN KEY(IdPilot, IdStarship) REFERENCES StarshipsPilots(IdPilot, IdStarship)
+);

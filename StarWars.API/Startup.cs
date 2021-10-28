@@ -13,8 +13,12 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using StarWars.API.Domain.Repositories;
+using StarWars.API.Domain.Services;
 using StarWars.API.Infra.DataAccess;
 using StarWars.API.Infra.Repositories;
+using StarWars.API.Infra.Services;
+using StarWars.API.Shared.Domain.Services;
+using StarWars.API.Shared.Infra.Services;
 
 namespace StarWars.API
 {
@@ -35,6 +39,14 @@ namespace StarWars.API
             #region Repositories
             services.AddTransient<IPlanetRepository, PlanetRepository>();
             services.AddTransient<IStarshipRepository, StarshipRepository>();
+            #endregion
+
+            #region Services
+            services.AddTransient<IPlanetService, PlanetService>();
+            services.AddTransient<IHttpRequest, HttpRequest>();
+
+            
+
             #endregion
             
             services.AddControllers();

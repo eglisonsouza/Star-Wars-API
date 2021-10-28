@@ -10,6 +10,6 @@ namespace StarWars.API.Domain.Entities
         public double Orbital { get; set; }
         public double Diameter { get; set; }
         public string Climate { get; set; }
-        public int Population { get; set; }
+        public long Population { get; set; }
     }
 }

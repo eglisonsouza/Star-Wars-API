@@ -17,7 +17,7 @@ namespace StarWars.API.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Get()
+        public async Task<IActionResult> GetAll()
         {
             return Ok(_starshipRepository.GetAll());
         }
