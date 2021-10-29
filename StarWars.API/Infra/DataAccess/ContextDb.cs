@@ -41,5 +41,21 @@ namespace StarWars.API.Infra.DataAccess
             }
         }
         
+        public async Task<int> Insert(string sql, Object param)
+        {
+            try
+            {
+                using (MySqlConnection connection = new MySqlConnection(connectionString: _configuration.GetConnectionString("Db")))
+                {
+                    return await connection.ExecuteAsync(sql, param);
+                }
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+        }
     }
 }

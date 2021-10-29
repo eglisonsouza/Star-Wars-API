@@ -9,5 +9,7 @@ namespace StarWars.API.Domain.Repositories
         IEnumerable<Starship> GetAll();
 
         Task<bool> Synchronize();
+        
+        Task<int> Insert(Starship starship);
     }
 } 

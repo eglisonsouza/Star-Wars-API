@@ -33,11 +33,11 @@ namespace StarWars.API.Infra.Repositories
                     {
                         Id = planet.GetId(),
                         Name = planet.Name,
-                        Rotation = Convert.ToDouble(planet.Rotation.ToDouble()),
-                        Orbital = Convert.ToDouble(planet.Orbital.ToDouble()),
-                        Diameter = Convert.ToDouble(planet.Diameter.ToDouble()),
+                        Rotation = planet.Rotation.ToDouble(),
+                        Orbital = planet.Orbital.ToDouble(),
+                        Diameter = planet.Diameter.ToDouble(),
                         Climate = planet.Climate,
-                        Population = Convert.ToInt64(planet.Population.ToLong())
+                        Population = planet.Population.ToLong()
                     });
                 });
 
@@ -45,7 +45,7 @@ namespace StarWars.API.Infra.Repositories
             }
             catch (Exception e)
             {
-                throw e;
+                throw;
             }
         }
 

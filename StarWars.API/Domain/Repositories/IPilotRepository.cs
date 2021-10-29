@@ -1,14 +1,11 @@
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using StarWars.API.Domain.Entities;
 
 namespace StarWars.API.Domain.Repositories
 {
-    public interface IPlanetRepository
+    public interface IPilotRepository
     {
-        IEnumerable<Planet> GetAll();
         Task<bool> Synchronize();
 
-        Task<int> Insert(Planet planet);
     }
 }

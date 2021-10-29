@@ -30,12 +30,15 @@ namespace StarWars.API
             #region Repositories
             services.AddTransient<IPlanetRepository, PlanetRepository>();
             services.AddTransient<IStarshipRepository, StarshipRepository>();
+            services.AddTransient<IPilotRepository, PilotRepository>();
+            services.AddTransient<IStarshipPilotRepository, StarshipPilotRepository>();
             #endregion
 
             #region Services
             services.AddTransient<IPlanetSynchronize, PlanetSynchronize>();
-            services.AddTransient<IHttpRequest, HttpRequest>();
             services.AddTransient<IStarshipSynchronize, StarshipSynchronize>();
+            services.AddTransient<IPilotSynchronize, PilotSynchronize>();
+            services.AddTransient<IHttpRequest, HttpRequest>();
             #endregion
             
             services.AddControllers();

@@ -1,3 +1,5 @@
+CREATE DATABASE star_wars;
+
 CREATE TABLE Planets
 (
 	Id INT NOT NULL PRIMARY KEY,

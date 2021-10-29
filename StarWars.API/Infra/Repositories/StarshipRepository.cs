@@ -45,11 +45,11 @@ namespace StarWars.API.Infra.Repositories
             }
             catch (Exception e)
             {
-                throw e;
+                throw;
             }
         }
 
-        private Task<int> Insert(Starship starship)
+        public Task<int> Insert(Starship starship)
         {
             return this.ContextDb.Insert<Starship>(starship);
         }
