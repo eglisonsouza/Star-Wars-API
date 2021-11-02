@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace StarWars.API.Domain.Entities
 {
     public class Pilot
@@ -6,5 +8,6 @@ namespace StarWars.API.Domain.Entities
         public string Name { get; set; }
         public string BirthYear { get; set; }
         public Planet Planet { get; set; }
+        public List<Starship> Starships { get; set; }
     }
 }

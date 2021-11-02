@@ -21,14 +21,14 @@ namespace StarWars.API.Infra.Repositories
 
         public IEnumerable<Starship> GetAll()
         {
-            return this.GenericDa.Get<Starship>();
+            return GenericDa.Get<Starship>();
         }
 
         public async Task<bool> Synchronize()
         {
             try
             {
-                GenericDa.Insert<Starship>(objects: (await _starshipSynchronize.Synchronize()).ConvertToPlanet());
+                await GenericDa.Insert<Starship>(objects: (await _starshipSynchronize.Synchronize()).ConvertToPlanet());
 
                 return true;
             }

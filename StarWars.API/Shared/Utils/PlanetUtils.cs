@@ -9,7 +9,7 @@ namespace StarWars.API.Shared.Utils
     {
         public static List<Planet> ConvertToPlanet(this List<PlanetViewModel> planetViewModels)
         {
-            return (planetViewModels).Select(ConvertToPlanet).ToList();
+            return planetViewModels.Select(ConvertToPlanet).ToList();
         }
         
         private static Planet ConvertToPlanet(PlanetViewModel planetViewModel)

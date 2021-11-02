@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.Json.Serialization;
+using StarWars.API.Shared.Utils;
 
 namespace StarWars.API.Domain.ViewModels
 {
@@ -37,6 +38,11 @@ namespace StarWars.API.Domain.ViewModels
         public int GetIdPlanet()
         {
             return Convert.ToInt32(IdPlanet.Split("/").LastOrDefault(id => !string.IsNullOrEmpty(id)));
+        }
+        
+        public List<long> GetIdsStarshipt()
+        {
+            return IdStarships.Select(id => id.Split("/").LastOrDefault(value => !string.IsNullOrEmpty(value)).ToLong()).ToList();
         }
     }
 }

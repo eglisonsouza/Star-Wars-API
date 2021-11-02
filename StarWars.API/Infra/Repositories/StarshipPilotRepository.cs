@@ -1,8 +1,11 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using StarWars.API.Domain.Repositories;
+using StarWars.API.Domain.ViewModels;
 using StarWars.API.Infra.DataAccess;
+using StarWars.API.Shared.Utils;
 
 namespace StarWars.API.Infra.Repositories
 {
@@ -14,13 +17,12 @@ namespace StarWars.API.Infra.Repositories
         public StarshipPilotRepository(GenericDA genericDa) : base(genericDa)
         {
         }
-
-        public void AssociateShipPilot(int idPilot, List<int> idStarships)
+        
+        public async void AssociateShipPilot(List<PilotViewModel> pilotsViewModel)
         {
-            //async void InsertIds(int id) => await GenericDa.Insert<Object>(sql: ScriptInsert, param: new {IdPilot = idPilot, IdStarship = id});
-
-            //idStarships.ForEach(InsertIds);
-
+            await GenericDa.Insert(
+                objects: pilotsViewModel.ConvertToPilotStarship(),
+                sql: ScriptInsert);
         }
     }
 }

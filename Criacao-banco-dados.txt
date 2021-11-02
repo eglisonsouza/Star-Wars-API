@@ -8,7 +8,7 @@ CREATE TABLE Planets
 	Orbital FLOAT NOT NULL,
 	Diameter FLOAT NOT NULL,
 	Climate VARCHAR(50) NOT NULL,
-	Population INT NOT NULL
+	Population BIGINT NOT NULL
 );
 
 

@@ -6,13 +6,12 @@ using Dapper;
 using Microsoft.Extensions.Configuration;
 using MySqlConnector;
 using StarWars.API.Infra.DataAccess.Base;
-using StarWars.API.Infra.Repositories;
 
 namespace StarWars.API.Infra.DataAccess
 {
     public class PilotDA : BaseDA
     {
-        private const string ScriptInsert =
+        private const string ScriptInsertPilot =
             @"INSERT INTO Pilots (Id, Name, BirthYear, IdPlanet) VALUES (@Id, @Name, @BirthYear, @IdPlanet)";
         
         public PilotDA(IConfiguration configuration) : base(configuration)
@@ -25,7 +24,7 @@ namespace StarWars.API.Infra.DataAccess
             {
                 using (MySqlConnection connection = new MySqlConnection(connectionString: Configuration.GetConnectionString("Db")))
                 {
-                    return await connection.ExecuteAsync(ScriptInsert, objects);
+                    return await connection.ExecuteAsync(ScriptInsertPilot, objects);
                 }
             }
             catch (Exception e)

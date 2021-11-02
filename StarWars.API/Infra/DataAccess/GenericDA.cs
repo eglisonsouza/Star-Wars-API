@@ -32,8 +32,8 @@ namespace StarWars.API.Infra.DataAccess
             {
                 if (string.IsNullOrEmpty(sql))
                 {
-                    sql = $@"INSERT INTO {typeof(T).Name}s ({String.Join(",", typeof(T).GetProperties().Select(atr => atr.Name))})
-                    VALUES ({String.Join(",", typeof(T).GetProperties().Select(atr => $"@{atr.Name}"))})";
+                    sql = $@"
+                        INSERT INTO {typeof(T).Name}s ({String.Join(",", typeof(T).GetProperties().Select(atr => atr.Name))}) VALUES ({String.Join(",", typeof(T).GetProperties().Select(atr => $"@{atr.Name}"))})";
                 }
                 
                 using (MySqlConnection connection = new MySqlConnection(connectionString: Configuration.GetConnectionString("Db")))
