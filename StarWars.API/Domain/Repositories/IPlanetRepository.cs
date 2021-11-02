@@ -9,6 +9,5 @@ namespace StarWars.API.Domain.Repositories
         IEnumerable<Planet> GetAll();
         Task<bool> Synchronize();
 
-        Task<int> Insert(Planet planet);
     }
 }

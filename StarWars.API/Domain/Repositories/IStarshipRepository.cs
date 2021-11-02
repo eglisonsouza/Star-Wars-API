@@ -10,6 +10,5 @@ namespace StarWars.API.Domain.Repositories
 
         Task<bool> Synchronize();
         
-        Task<int> Insert(Starship starship);
     }
 } 

@@ -5,6 +5,8 @@ using StarWars.API.Domain.Repositories;
 using StarWars.API.Domain.Services;
 using StarWars.API.Infra.DataAccess;
 using System;
+using System.Linq;
+using StarWars.API.Domain.ViewModels;
 using StarWars.API.Shared.Utils;
 
 namespace StarWars.API.Infra.Repositories
@@ -13,34 +15,21 @@ namespace StarWars.API.Infra.Repositories
     {
         private readonly IPlanetSynchronize _planetSynchronize;
 
-        public PlanetRepository(ContextDb contextDb, IPlanetSynchronize planetSynchronize) : base(contextDb)
+        public PlanetRepository(GenericDA genericDa, IPlanetSynchronize planetSynchronize) : base(genericDa)
         {
             _planetSynchronize = planetSynchronize;
         }
 
         public IEnumerable<Planet> GetAll()
         {
-            return this.ContextDb.Get<Planet>();
+            return this.GenericDa.Get<Planet>();
         }
 
         public async Task<bool> Synchronize()
         {
             try
             {
-                (await _planetSynchronize.Synchronize()).ForEach(planet =>
-                {
-                    this.Insert(new Planet()
-                    {
-                        Id = planet.GetId(),
-                        Name = planet.Name,
-                        Rotation = planet.Rotation.ToDouble(),
-                        Orbital = planet.Orbital.ToDouble(),
-                        Diameter = planet.Diameter.ToDouble(),
-                        Climate = planet.Climate,
-                        Population = planet.Population.ToLong()
-                    });
-                });
-
+                await GenericDa.Insert<Planet>(objects: (await _planetSynchronize.Synchronize()).ConvertToPlanet());
                 return true;
             }
             catch (Exception e)
@@ -49,9 +38,6 @@ namespace StarWars.API.Infra.Repositories
             }
         }
 
-        public Task<int> Insert(Planet planet)
-        {
-            return this.ContextDb.Insert<Planet>(planet);
-        }
+       
     }
 }

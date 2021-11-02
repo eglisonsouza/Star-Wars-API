@@ -6,6 +6,7 @@ using Microsoft.OpenApi.Models;
 using StarWars.API.Domain.Repositories;
 using StarWars.API.Domain.Services;
 using StarWars.API.Infra.DataAccess;
+using StarWars.API.Infra.DataAccess.Base;
 using StarWars.API.Infra.Repositories;
 using StarWars.API.Infra.Services.Synchronize;
 using StarWars.API.Shared.Domain.Services;
@@ -25,8 +26,9 @@ namespace StarWars.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddScoped<ContextDb>();
-
+            services.AddScoped<BaseDA>();
+            services.AddScoped<GenericDA>();
+            
             #region Repositories
             services.AddTransient<IPlanetRepository, PlanetRepository>();
             services.AddTransient<IStarshipRepository, StarshipRepository>();

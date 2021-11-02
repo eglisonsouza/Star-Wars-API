@@ -11,15 +11,15 @@ namespace StarWars.API.Infra.Repositories
         private const string ScriptInsert =
             "INSERT INTO StarshipsPilots (IdPilot, IdStarship) VALUES (@IdPilot, @IdStarship);";
 
-        public StarshipPilotRepository(ContextDb contextDb) : base(contextDb)
+        public StarshipPilotRepository(GenericDA genericDa) : base(genericDa)
         {
         }
 
         public void AssociateShipPilot(int idPilot, List<int> idStarships)
         {
-            async void InsertIds(int id) => await ContextDb.Insert(sql: ScriptInsert, new {IdPilot = idPilot, IdStarship = id});
+            //async void InsertIds(int id) => await GenericDa.Insert<Object>(sql: ScriptInsert, param: new {IdPilot = idPilot, IdStarship = id});
 
-            idStarships.ForEach(InsertIds);
+            //idStarships.ForEach(InsertIds);
 
         }
     }

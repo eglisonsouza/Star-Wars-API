@@ -14,32 +14,21 @@ namespace StarWars.API.Infra.Repositories
     {
         private readonly IStarshipSynchronize _starshipSynchronize;
 
-        public StarshipRepository(ContextDb contextDb, IStarshipSynchronize starshipSynchronize) : base(contextDb)
+        public StarshipRepository(GenericDA genericDa, IStarshipSynchronize starshipSynchronize) : base(genericDa)
         {
             _starshipSynchronize = starshipSynchronize;
         }
 
         public IEnumerable<Starship> GetAll()
         {
-            return this.ContextDb.Get<Starship>();
+            return this.GenericDa.Get<Starship>();
         }
 
         public async Task<bool> Synchronize()
         {
             try
             {
-                (await _starshipSynchronize.Synchronize()).ForEach(starship =>
-                {
-                    this.Insert(new Starship()
-                    {
-                        Id = starship.GetId(),
-                        Name = starship.Name,
-                        Model = starship.Model,
-                        Passenger = starship.Passenger.ToInt(),
-                        Charge = starship.Charge.ToDouble(),
-                        Class = starship.Class
-                    });
-                });
+                GenericDa.Insert<Starship>(objects: (await _starshipSynchronize.Synchronize()).ConvertToPlanet());
 
                 return true;
             }
@@ -49,9 +38,5 @@ namespace StarWars.API.Infra.Repositories
             }
         }
 
-        public Task<int> Insert(Starship starship)
-        {
-            return this.ContextDb.Insert<Starship>(starship);
-        }
     }
 }
