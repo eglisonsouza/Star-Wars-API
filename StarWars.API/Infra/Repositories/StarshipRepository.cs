@@ -2,11 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using StarWars.API.Domain.Entities;
+using StarWars.API.Domain.Extensions;
 using StarWars.API.Domain.Repositories;
 using StarWars.API.Domain.Services;
 using StarWars.API.Infra.DataAccess;
 using StarWars.API.Infra.Services;
-using StarWars.API.Shared.Utils;
 
 namespace StarWars.API.Infra.Repositories
 {

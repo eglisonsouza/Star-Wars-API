@@ -6,8 +6,8 @@ using StarWars.API.Domain.Services;
 using StarWars.API.Infra.DataAccess;
 using System;
 using System.Linq;
+using StarWars.API.Domain.Extensions;
 using StarWars.API.Domain.ViewModels;
-using StarWars.API.Shared.Utils;
 
 namespace StarWars.API.Infra.Repositories
 {

@@ -3,7 +3,6 @@ using System.Threading.Tasks;
 using StarWars.API.Domain.Services;
 using StarWars.API.Domain.ViewModels;
 using StarWars.API.Shared.Domain.Services;
-using StarWars.API.Shared.Utils;
 
 namespace StarWars.API.Infra.Services.Synchronize
 {

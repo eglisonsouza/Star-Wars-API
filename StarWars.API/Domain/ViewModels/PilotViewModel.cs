@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.Json.Serialization;
-using StarWars.API.Shared.Utils;
+using StarWars.API.Domain.Extensions;
 
 namespace StarWars.API.Domain.ViewModels
 {

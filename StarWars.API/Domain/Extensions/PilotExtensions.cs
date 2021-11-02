@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using StarWars.API.Domain.ViewModels;
 
-namespace StarWars.API.Shared.Utils
+namespace StarWars.API.Domain.Extensions
 {
-    public static class PilotUtils
+    public static class PilotExtensions
     {
         public static List<Object> ConvertToPilot(this List<PilotViewModel> pilotsViewModel)
         {

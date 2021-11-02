@@ -1,8 +1,8 @@
 using System;
 
-namespace StarWars.API.Shared.Utils
+namespace StarWars.API.Domain.Extensions
 {
-    public static class ParseNumeric
+    public static class NumericExtensions
     {
         public static double ToDouble(this String value)
         {

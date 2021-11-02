@@ -3,9 +3,9 @@ using System.Linq;
 using StarWars.API.Domain.Entities;
 using StarWars.API.Domain.ViewModels;
 
-namespace StarWars.API.Shared.Utils
+namespace StarWars.API.Domain.Extensions
 {
-    public static class PlanetUtils
+    public static class PlanetExtensions
     {
         public static List<Planet> ConvertToPlanet(this List<PlanetViewModel> planetViewModels)
         {
