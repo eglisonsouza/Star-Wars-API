@@ -4,11 +4,11 @@ namespace StarWars.API.Infra.Repositories
 {
     public abstract class BaseRepository
     {
-        protected readonly ContextDb ContextDb;
+        protected readonly GenericDA GenericDa;
 
-        public BaseRepository(ContextDb contextDb)
+        public BaseRepository(GenericDA genericDa)
         {
-            ContextDb = contextDb;
+            GenericDa = genericDa;
         }
     }
 }

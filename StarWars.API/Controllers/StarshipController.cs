@@ -21,5 +21,13 @@ namespace StarWars.API.Controllers
         {
             return Ok(_starshipRepository.GetAll());
         }
+        
+        [HttpGet]
+        [Route("synchronize")]
+        public async Task<IActionResult> Synchronize()
+        {
+            await _starshipRepository.Synchronize();
+            return NoContent();
+        }
     }
 }
