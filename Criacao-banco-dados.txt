@@ -50,10 +50,10 @@ CREATE TABLE StarshipsPilots
 
 CREATE TABLE HistoryTrips
 (
+	Id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	IdPilot INT NOT NULL,
 	IdStarship INT NOT NULL,
 	DateExit DATETIME NOT NULL,
 	DateArrival DATETIME NULL,
-	CONSTRAINT PK_StarshipsPilots PRIMARY KEY(IdPilot, IdStarship),
 	CONSTRAINT FK_HistoryTrips_StarshipsPilots FOREIGN KEY(IdPilot, IdStarship) REFERENCES StarshipsPilots(IdPilot, IdStarship)
 );
