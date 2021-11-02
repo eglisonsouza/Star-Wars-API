@@ -24,5 +24,6 @@ namespace StarWars.API.Infra.Repositories
                 objects: pilotsViewModel.ConvertToPilotStarship(),
                 sql: ScriptInsert);
         }
+        
     }
 }

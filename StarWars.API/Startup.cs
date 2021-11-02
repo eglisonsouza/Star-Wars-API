@@ -34,6 +34,7 @@ namespace StarWars.API
             services.AddTransient<IStarshipRepository, StarshipRepository>();
             services.AddTransient<IPilotRepository, PilotRepository>();
             services.AddTransient<IStarshipPilotRepository, StarshipPilotRepository>();
+            services.AddTransient<IHistoryTripsRepository, HistoryTripsRepository>();
             #endregion
 
             #region Services

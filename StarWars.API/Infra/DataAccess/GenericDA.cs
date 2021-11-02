@@ -26,6 +26,16 @@ namespace StarWars.API.Infra.DataAccess
             }
         }
         
+        public async Task<Object> GetOne<T>(string sql = "", object param = null)
+        {
+            if (String.IsNullOrEmpty(sql)) sql = $"SELECT * FROM {typeof(T).Name}s";
+
+            using (MySqlConnection connection = new MySqlConnection(connectionString: Configuration.GetConnectionString("Db")))
+            {
+                return await connection.ExecuteScalarAsync<T>(sql: sql, param: param);
+            }
+        }
+        
         public async Task<int> Insert<T>(List<T> objects, string sql = null)
         {
             try
@@ -49,7 +59,7 @@ namespace StarWars.API.Infra.DataAccess
             }
         }
         
-        public async Task<int> Insert<T>(T @object, string sql = null)
+        public async Task<int> Insert<T>(T param, string sql = null)
         {
             try
             {
@@ -61,7 +71,7 @@ namespace StarWars.API.Infra.DataAccess
                 
                 using (MySqlConnection connection = new MySqlConnection(connectionString: Configuration.GetConnectionString("Db")))
                 {
-                    return await connection.ExecuteAsync(sql, @object);
+                    return await connection.ExecuteAsync(sql, param);
                 }
 
             }
